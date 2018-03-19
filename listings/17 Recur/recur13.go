@@ -2,21 +2,18 @@ package main
 
 import "fmt"
 
-func DigitCount(s string) int {
-	var codes []rune = []rune(s)
-	var count int = 0
-	for _, value := range codes {
-		if value >= 48 && value <= 57 {
-			count++
-		}
+func Palindrome(s []rune, from int, to int) bool {
+	if from >= to {
+		return true
 	}
-	return count
+	return s[from] == s[to] && Palindrome(s, from+1, to-1)
 }
 
 func main() {
 	var str string
 	for i := 0; i < 5; i++ {
 		fmt.Scan(&str)
-		fmt.Printf("digit count:\t%d\n", DigitCount(str))
+		var codes []rune = []rune(str)
+		fmt.Printf("Palindrome:\t%t\n", Palindrome(codes, 0, len(codes)-1))
 	}
 }
